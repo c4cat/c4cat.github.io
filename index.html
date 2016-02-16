@@ -21,16 +21,20 @@ canvas[resize] {
     height: 100%;
 }
 </style>
-<script type='text/javascript' src='./paper-full.min.js'></script>
+<script type='text/javascript' src='./static/js/paper-full.min.js'></script>
     <script type="text/paperscript" canvas="canvas">
         var width, height, center;
-        var points = 100;
+        var points = 200;
         var smooth = true;
+        var radius = 60;
         var path = new Path({
             // fillColor: 'black'
-            strokeWidth:1,
+            strokeWidth:0.5,
             strokeColor:'#000'
         });
+
+        // var c = new Path.Circle(new Point(view.center.x, view.center.y), radius);
+        // c.strokeColor = 'black';
 
         initializePath();
 
@@ -46,17 +50,38 @@ canvas[resize] {
             path.segments = [];
             // path.add(view.bounds.bottomLeft);
             for (var i = 0; i < points; i++) {
-                var point = new Point(rd(center.x-50,center.x+50), rd(center.y-50,center.y+50));
-                path.add(point);
+                var point = theCordAfterCricleLimit();
+                if(point){
+                    path.add(point);
+                }
             }
             path.smooth();
         }
 
+        function theCordAfterCricleLimit(){
+            var rdx = rd(center.x-radius,center.x+radius),
+                rdy = rd(center.y-radius,center.y+radius);
+
+            var xLength = Math.abs(rdx - center.x),
+                yLength = Math.abs(rdy - center.y);
+
+            var lengthFormOrigin =  Math.sqrt((xLength*xLength)+(yLength*yLength));
+            console.log(lengthFormOrigin);
+            if( lengthFormOrigin > radius){
+                return '';
+            }
+            var point = new Point(rdx, rdy);
+            return point;
+        }
+
         function onFrame(event) {
             if(event.count%3 == 0){
+                path.segments = [];
                 for (var i = 0; i < points; i++) {
-                    var point = new Point(rd(center.x-50,center.x+50), rd(center.y-50,center.y+50));
-                    path.segments[i].point = point;
+                    var point = theCordAfterCricleLimit();
+                    if(point){
+                        path.add(point);
+                    }
                 }
                 if(smooth){
                     path.smooth();
