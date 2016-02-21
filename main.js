@@ -14,38 +14,39 @@ var speed = 4;
 var ani = false;
 var path = new Path({
     strokeWidth: 1,
-    strokeColor: '#000'
+    strokeColor: '#000',
+    opacity: 0
 });
 var ggg;
 
-var copyright = new PointText({
-
-
-});
+var copyright = new PointText();
 
 var r = new Raster('./mrc.jpg', [x, y]);
 
 r.blendMode = 'source-in';
 
 r.onLoad = function() {
+    initializePath();
+    path.opacity = 1;
     var textMRC = new PointText({
         content: 'MRC',
         fontSize: 144,
-        position: new Point(x, y - 50),
-        fillColor: '#fff',
+        position: new Point(x, y - 60),
+        fillColor: '#eee',
         content: 'MRC',
         fontSize: 144,
-        fontWeight: 900,
+        fontWeight: 300,
+        fontFamily: 'arial',
         shadowColor: new Color(0, 0, 0, 0.8),
         shadowBlur: 15,
         shadowOffset: new Point(5, 0)
     });
-    textMRC.data.offsetY = -50;
+    textMRC.data.offsetY = -60;
 
     var lineAfterMRC = new Path.Rectangle({
         position: new Point(x, y - 5),
         size: [320, 4],
-        fillColor: '#fff',
+        fillColor: '#eee',
         shadowColor: new Color(0, 0, 0),
         shadowBlur: 12,
         shadowOffset: new Point(5, 5)
@@ -53,11 +54,12 @@ r.onLoad = function() {
     lineAfterMRC.data.offsetY = -5;
 
     var textCorder = new PointText({
-        fillColor: '#fff',
+        fillColor: '#eee',
         content: 'A CODER & DESIGNER',
         fontSize: 30,
         position: new Point(x, y + 20),
-        fontWeight: 900,
+        fontWeight: 300,
+        fontFamily: 'arial',
         shadowColor: new Color(0, 0, 0),
         shadowBlur: 12,
         shadowOffset: new Point(5, 5)
@@ -65,20 +67,20 @@ r.onLoad = function() {
     textCorder.data.offsetY = 20;
 
     var redDelLine = new Path.Rectangle({
-        position: new Point(x + 70, y + 10),
-        size: [170, 4],
+        position: new Point(x + 75, y + 12),
+        size: [185, 4],
         fillColor: 'red'
     });
-    redDelLine.data.offsetX = 70;
-    redDelLine.data.offsetY = 10;
+    redDelLine.data.offsetX = 75;
+    redDelLine.data.offsetY = 12;
 
     var redDelLine2 = new Path.Rectangle({
-        position: new Point(x + 70, y + 20),
-        size: [170, 4],
+        position: new Point(x + 75, y + 22),
+        size: [185, 4],
         fillColor: 'red'
     });
-    redDelLine2.data.offsetX = 70;
-    redDelLine2.data.offsetY = 20;
+    redDelLine2.data.offsetX = 75;
+    redDelLine2.data.offsetY = 22;
     //add to a group
     ggg = new Group(textMRC,lineAfterMRC,textCorder,redDelLine,redDelLine2);
     ggg.onMouseEnter = function(e) {
@@ -98,7 +100,7 @@ r.onLoad = function() {
 var s = new Shape.Rectangle({
     point: [view.size.width / 2, 0],
     size: [view.size.width / 2, view.size.height],
-    fillColor: '#fff'
+    fillColor: '#eee'
 });
 
 
@@ -111,8 +113,6 @@ g.onMouseEnter = function(e) {
 g.onMouseLeave = function(e) {
     ani = false;
 }
-
-initializePath();
 
 //
 //function
