@@ -26,6 +26,7 @@ var r = new Raster('./mrc.jpg', [x, y]);
 r.blendMode = 'source-in';
 
 r.onLoad = function() {
+    document.getElementById('loading').style.display = 'none';
     initializePath();
     path.opacity = 1;
     var textMRC = new PointText({
