@@ -1,7 +1,7 @@
 //
 // mrc
 // http://ili.li
-// ver 0.2.0
+// ver 0.3.0
 //
 
 var width, height, center;
@@ -10,7 +10,7 @@ var x = view.center.x,
 var points = 800;
 var smooth = true;
 var radius = 280;
-var speed = 4;
+var speed = 1;
 var ani = false;
 var path = new Path({
     strokeWidth: 1,
@@ -32,58 +32,58 @@ r.onLoad = function() {
     var textMRC = new PointText({
         content: 'MRC',
         fontSize: 144,
-        position: new Point(x, y - 60),
+        position: new Point(x, y),
         fillColor: '#eee',
         content: 'MRC',
         fontSize: 144,
         fontWeight: 300,
         fontFamily: 'arial',
-        shadowColor: new Color(0, 0, 0, 0.8),
-        shadowBlur: 15,
-        shadowOffset: new Point(5, 0)
+        // shadowColor: new Color(0, 0, 0, 0.8),
+        // shadowBlur: 15,
+        // shadowOffset: new Point(5, 0)
     });
     textMRC.data.offsetY = -60;
 
-    var lineAfterMRC = new Path.Rectangle({
-        position: new Point(x, y - 5),
-        size: [320, 4],
-        fillColor: '#eee',
-        shadowColor: new Color(0, 0, 0),
-        shadowBlur: 12,
-        shadowOffset: new Point(5, 5)
-    });
-    lineAfterMRC.data.offsetY = -5;
+    // var lineAfterMRC = new Path.Rectangle({
+    //     position: new Point(x, y - 5),
+    //     size: [320, 4],
+    //     fillColor: '#eee',
+    //     shadowColor: new Color(0, 0, 0),
+    //     shadowBlur: 12,
+    //     shadowOffset: new Point(5, 5)
+    // });
+    // lineAfterMRC.data.offsetY = -5;
 
-    var textCorder = new PointText({
-        fillColor: '#eee',
-        content: 'A CODER & DESIGNER',
-        fontSize: 30,
-        position: new Point(x, y + 20),
-        fontWeight: 300,
-        fontFamily: 'arial',
-        shadowColor: new Color(0, 0, 0),
-        shadowBlur: 12,
-        shadowOffset: new Point(5, 5)
-    });
-    textCorder.data.offsetY = 20;
+    // var textCorder = new PointText({
+    //     fillColor: '#eee',
+    //     content: 'A CODER & DESIGNER',
+    //     fontSize: 30,
+    //     position: new Point(x, y + 20),
+    //     fontWeight: 300,
+    //     fontFamily: 'arial',
+    //     shadowColor: new Color(0, 0, 0),
+    //     shadowBlur: 12,
+    //     shadowOffset: new Point(5, 5)
+    // });
+    // textCorder.data.offsetY = 20;
 
-    var redDelLine = new Path.Rectangle({
-        position: new Point(x + 75, y + 12),
-        size: [185, 4],
-        fillColor: 'red'
-    });
-    redDelLine.data.offsetX = 75;
-    redDelLine.data.offsetY = 12;
+    // var redDelLine = new Path.Rectangle({
+    //     position: new Point(x + 75, y + 12),
+    //     size: [185, 4],
+    //     fillColor: 'red'
+    // });
+    // redDelLine.data.offsetX = 75;
+    // redDelLine.data.offsetY = 12;
 
-    var redDelLine2 = new Path.Rectangle({
-        position: new Point(x + 75, y + 22),
-        size: [185, 4],
-        fillColor: 'red'
-    });
-    redDelLine2.data.offsetX = 75;
-    redDelLine2.data.offsetY = 22;
+    // var redDelLine2 = new Path.Rectangle({
+    //     position: new Point(x + 75, y + 22),
+    //     size: [185, 4],
+    //     fillColor: 'red'
+    // });
+    // redDelLine2.data.offsetX = 75;
+    // redDelLine2.data.offsetY = 22;
     //add to a group
-    ggg = new Group(textMRC,lineAfterMRC,textCorder,redDelLine,redDelLine2);
+    ggg = new Group(textMRC);
     ggg.onMouseEnter = function(e) {
         ani = true;
     }
